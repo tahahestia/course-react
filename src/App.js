@@ -24,7 +24,7 @@ function App() {
   };
 
   const deleteHandler = (id) => {
-    setEvents(events.filter((event) => event.id != id));
+    setEvents(events.filter((event) => event.id !== id));
   };
 
   return (

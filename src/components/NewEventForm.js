@@ -4,12 +4,12 @@ import "./NewEventForm.css";
 const NewEventForm = ({ addEvent }) => {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState("");
-  // const handleChange = (e) => {
-  //   console.log(e.target.value);
-  // };
+  const [location, setLocation] = useState("");
+
   const clearHandler = () => {
     setTitle("");
     setDate("");
+    setLocation("");
   };
 
   const submitHandler = (e) => {
@@ -17,6 +17,7 @@ const NewEventForm = ({ addEvent }) => {
     let event = {
       title,
       date,
+      location,
       id: Math.floor(Math.random() * 100000),
     };
     if (title && date) {
@@ -38,23 +39,30 @@ const NewEventForm = ({ addEvent }) => {
         />
       </label>
       <label>
-        <span>Event Date :</span>
+        <span>Event Location :</span>
         <input type="date" onChange={(e) => setDate(e.target.value)} value={date} required />
       </label>
-      {(title || date) && (
+      <label>
+        <span>Event Location :</span>
+        <br />
+        <select onClick={(e) => setLocation(e.target.value)} required>
+          <option value="">--</option>
+          <option value="safi">SAFI</option>
+          <option value="eljadida">EL JADIDA</option>
+          <option value="casablanca">CASABLANCA</option>
+          <option value="rabat">RABAT</option>
+        </select>
+      </label>
+      {(title || date || location) && (
         <p>
-          Title : {title} <br /> Date : {date}
+          Title : {title} <br /> Date : {date} <br /> Location : {location}
         </p>
       )}
       <div>
         <button>Ajouter</button>
       </div>
       <div>
-        <button
-          type="button"
-          onClick={clearHandler}
-          style={{ backgroundColor: "orange", color: "black" }}
-        >
+        <button type="button" onClick={clearHandler} style={{ backgroundColor: "orange", color: "black" }}>
           Vider la forme
         </button>
       </div>
